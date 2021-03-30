@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FirstController {
 
-    @GetMapping("/hello")
-    public String helloPage() {
-        return "first/hello";
+    @GetMapping("/start")
+    public String startPage() {
+        return "first/start";
     }
 
     @GetMapping("/authorization")
