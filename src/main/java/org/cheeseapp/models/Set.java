@@ -1,21 +1,34 @@
 package org.cheeseapp.models;
 
-public class Set {
-    private int orderId,productId,count;
+import javax.persistence.*;
 
-    public int getOrderId() {
+@Entity
+@Table(name = "Sets")
+public class Set {
+    @ManyToOne
+    @Id
+    @JoinColumn(name = "ID заказа")
+    private Order orderId;
+    @OneToOne
+    @Id
+    @JoinColumn(name = "ID товара")
+    private Product productId;
+    @Column(name = "Количество")
+    private int count;
+
+    public Order getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Order orderId) {
         this.orderId = orderId;
     }
 
-    public int getProductId() {
+    public Product getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 

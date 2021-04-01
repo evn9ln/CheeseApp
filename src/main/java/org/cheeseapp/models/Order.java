@@ -1,11 +1,23 @@
 package org.cheeseapp.models;
 
+import javax.persistence.*;
 import java.util.Calendar;
-
+@Entity
+@Table(name = "Orders")
 public class Order {
-    private int orderId, idClient, orderCost;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int orderId;
+    @ManyToOne()
+    @JoinColumn(name="ID пользователя")
+    private Client idClient;
+    @Column(name = "Сумма заказа")
+    private int orderCost;
+    @Column(name = "Дата")
     private Calendar orderDate;
+    @Column(name = "Статус")
     private Boolean orderStatus;
+
 
     public int getOrderId() {
         return orderId;
@@ -15,11 +27,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getIdClient() {
+    public Client getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(int idClient) {
+    public void setIdClient(Client idClient) {
         this.idClient = idClient;
     }
 
