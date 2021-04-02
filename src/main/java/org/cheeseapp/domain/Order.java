@@ -6,9 +6,9 @@ import java.util.Calendar;
 @Table(name = "Orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name="ID пользователя")
     private Client idClient;
     @Column(name = "Сумма заказа")

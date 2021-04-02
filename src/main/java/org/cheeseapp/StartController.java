@@ -18,4 +18,6 @@ public class StartController {
         model.addAttribute("main", "Roquefort cheese");
         return "main";
     }
+
+
 }

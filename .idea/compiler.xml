@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="serving-web-content" />
         <module name="CheeseApp" />
         <module name="roquefort-cheese-app" />
       </profile>
@@ -14,6 +15,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="roquefort-cheese-app" options="-parameters" />
+      <module name="serving-web-content" options="-parameters" />
     </option>
   </component>
 </project>

@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 public class Admin {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int adminId;
     @Column(name="Имя")
     private String adminName;
@@ -17,6 +17,7 @@ public class Admin {
     private String adminLogin;
     @Column(name="Пароль")
     private String adminPassword;
+
 
     public Admin(){
     }

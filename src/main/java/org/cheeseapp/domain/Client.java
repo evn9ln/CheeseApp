@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="Clients")
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int clientId;
     @Column(name="Фамилия")
     private String clientSurname;
@@ -16,13 +16,13 @@ public class Client {
     @Column(name="Номер телефона")
     private String phone;
     @Column(name="E-mail")
-    private String    mail;
+    private String mail;
     @Column(name="Логин")
-    private String   clientLogin;
+    private String clientLogin;
     @Column(name="Пароль")
-    private String   clientPassword;
+    private String clientPassword;
     @Column(name="Адрес")
-    private String  address;
+    private String address;
 
     public int getClientId() {
         return clientId;
