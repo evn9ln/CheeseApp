@@ -1,9 +1,28 @@
 package org.cheeseapp.domain;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="Clients")
 public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clientId;
-    private String clientName, clientSurname, phone, mail,
-            clientLogin, clientPassword, address;
+    @Column(name="Фамилия")
+    private String clientSurname;
+    @Column(name="Имя")
+    private String clientName;
+    @Column(name="Номер телефона")
+    private String phone;
+    @Column(name="E-mail")
+    private String    mail;
+    @Column(name="Логин")
+    private String   clientLogin;
+    @Column(name="Пароль")
+    private String   clientPassword;
+    @Column(name="Адрес")
+    private String  address;
 
     public int getClientId() {
         return clientId;

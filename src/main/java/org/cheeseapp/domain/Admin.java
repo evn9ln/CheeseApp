@@ -1,8 +1,26 @@
 package org.cheeseapp.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Admins")
+
 public class Admin {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int adminId;
-    private String adminName, adminSurname, adminLogin, adminPassword;
+    @Column(name="Имя")
+    private String adminName;
+    @Column(name="Фамилия")
+    private String  adminSurname;
+    @Column(name="Логин")
+    private String adminLogin;
+    @Column(name="Пароль")
+    private String adminPassword;
+
+    public Admin(){
+    }
+
 
     public int getAdminId() {
         return adminId;

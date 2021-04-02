@@ -1,7 +1,16 @@
 package org.cheeseapp.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Products")
 public class Product {
-    private int productId, cost;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productId;
+    @Column(name = "Цена")
+    private int cost;
+    @Column(name = "Название")
     private String productName;
 
     public int getProductId() {
