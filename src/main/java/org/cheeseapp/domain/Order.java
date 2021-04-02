@@ -1,4 +1,4 @@
-package org.cheeseapp.models;
+package org.cheeseapp.domain;
 
 import java.util.Calendar;
 

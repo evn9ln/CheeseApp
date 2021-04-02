@@ -1,4 +1,4 @@
-package org.cheeseapp.models;
+package org.cheeseapp.domain;
 
 public class Set {
     private int orderId,productId,count;
