@@ -1,10 +1,11 @@
 package org.cheeseapp.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Sets")
-public class Set {
+public class Set implements Serializable {
     @ManyToOne
     @Id
     @JoinColumn(name = "ID заказа")

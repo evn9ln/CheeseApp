@@ -1,6 +1,10 @@
 package org.cheeseapp.domain;
 
+
+
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="Admins")

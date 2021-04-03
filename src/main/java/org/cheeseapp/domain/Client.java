@@ -24,6 +24,16 @@ public class Client {
     @Column(name="Адрес")
     private String address;
 
+    public Client(String clientSurname, String clientName) {
+        this.clientSurname = clientSurname;
+        this.clientName = clientName;
+    }
+
+    public Client() {
+
+    }
+
+
     public int getClientId() {
         return clientId;
     }
