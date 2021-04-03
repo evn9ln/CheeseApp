@@ -8,14 +8,14 @@ import java.io.Serializable;
 public class Set implements Serializable {
     @ManyToOne
     @Id
-    @JoinColumn(name = "ID заказа")
+    @JoinColumn(name = "ID_заказа")
     private Order orderId;
     @OneToOne
     @Id
-    @JoinColumn(name = "ID товара")
+    @JoinColumn(name = "ID_товара")
     private Product productId;
     @Column(name = "Количество")
-    private int count;
+    private Integer count;
 
     public Order getOrderId() {
         return orderId;

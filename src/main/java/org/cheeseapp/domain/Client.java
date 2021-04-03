@@ -2,20 +2,19 @@ package org.cheeseapp.domain;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name="Clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int clientId;
+    private Integer clientId;
     @Column(name="Фамилия")
     private String clientSurname;
     @Column(name="Имя")
     private String clientName;
-    @Column(name="Номер телефона")
+    @Column(name="Номер_телефона")
     private String phone;
-    @Column(name="E-mail")
+    @Column(name="E_mail")
     private String mail;
     @Column(name="Логин")
     private String clientLogin;

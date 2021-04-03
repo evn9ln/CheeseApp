@@ -1,10 +1,6 @@
 package org.cheeseapp.domain;
 
-
-
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name="Admins")
@@ -12,7 +8,7 @@ import javax.persistence.*;
 public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int adminId;
+    private Integer adminId;
     @Column(name="Имя")
     private String adminName;
     @Column(name="Фамилия")

@@ -1,20 +1,18 @@
 package org.cheeseapp;
 
 import org.cheeseapp.domain.Client;
-//import org.cheeseapp.repos.ClientRepo;
 import org.cheeseapp.repos.ClientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
 
 @Controller
 public class StartController {
+
     @Autowired
     private ClientRepo clientRepo;
 
@@ -30,20 +28,25 @@ public class StartController {
         return "main";
     }
 
-
     @GetMapping("/testDB")
-    public String newClient(Model model){
-
-
+    public String listClients(Model model){
+        model.addAttribute("client", clientRepo.findAll());
         return "testDB";
     }
-    @PostMapping
-    public String add(@RequestParam String name,@RequestParam String surname,Model model){
+
+    @PostMapping("/testDB")
+    public String addClient(@RequestParam int id, @RequestParam String name) {
+        Client client = new Client();
+        client.setClientId(id);
+        client.setClientName(name);
+        clientRepo.save(client);
+        return "testDB";
+    }
+  /*  @PostMapping
+    public String addClient(@RequestParam String name,@RequestParam String surname,Model model){
         Client client=new Client(name,surname);
-
-
         model.addAttribute("clients",client);
         return "testDB";
+    } */
 
-    }
 }

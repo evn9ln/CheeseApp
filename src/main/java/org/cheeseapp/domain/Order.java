@@ -7,12 +7,12 @@ import java.util.Calendar;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int orderId;
+    private Integer orderId;
     @ManyToOne
-    @JoinColumn(name="ID пользователя")
+    @JoinColumn(name="ID_пользователя")
     private Client idClient;
-    @Column(name = "Сумма заказа")
-    private int orderCost;
+    @Column(name = "Сумма_заказа")
+    private Integer orderCost;
     @Column(name = "Дата")
     private Calendar orderDate;
     @Column(name = "Статус")
