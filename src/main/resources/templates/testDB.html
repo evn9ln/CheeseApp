@@ -5,28 +5,28 @@
     <title>Clients list</title>
 </head>
 <body>
-
 <table>
-<thead>
-<tr>
-    <th> Id </th>
-    <th> Name </th>
-</tr>
-</thead>
-<tbody>
-
-<tr th:each="client : ${clients}">
-    <td><span th:text="${client.clientName}"> Id </span></td>
-    <td><span th:text="${client.clientSurname}"> Name </span></td>
-</tr>
-</tbody>
+    <thead>
+    <tr>
+        <th> Name </th>
+        <th> Surname </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${clients.empty}">
+        <td colspan="2"> No Clients Available </td>
+    </tr>
+    <tr th:each="client : ${clients}">
+        <td><span th:text="${client.clientName}"> Name </span></td>
+        <td><span th:text="${client.clientSurname}"> Surname </span></td>
+    </tr>
+    </tbody>
 </table>
 
 <form method="post">
-    <input type="text" name="name" placeholder="Введите id" />
-    <input type="text" name="surname" placeholder="Введите Name" />
+    <input type="text" name="name" placeholder="Введите name" />
+    <input type="text" name="surname" placeholder="Введите surname" />
     <button type="submit">Добавить</button>
 </form>
-
 </body>
 </html>

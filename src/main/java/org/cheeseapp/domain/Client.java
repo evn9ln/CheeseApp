@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="clients")
 public class Client {
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.AUTO) some bullshit
     @Column(name = "id_пользователя")
     private Integer clientId;
     @Column(name= "фамилия")
@@ -24,14 +24,13 @@ public class Client {
     @Column(name= "адрес")
     private String address;
 
-    public Client(String clientSurname, String clientName) {
-        this.clientSurname = clientSurname;
+    public Client(Integer clientId, String clientName, String clientSurname) {
+        this.clientId = clientId;
         this.clientName = clientName;
+        this.clientSurname = clientSurname;
     }
 
-    public Client() {
-
-    }
+    public Client() {}
 
 
     public int getClientId() {
