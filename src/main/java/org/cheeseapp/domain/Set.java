@@ -3,16 +3,16 @@ package org.cheeseapp.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "Sets")
+//@Entity
+@Table(name = "sets")
 public class Set implements Serializable {
     @ManyToOne
     @Id
-    @JoinColumn(name = "ID_заказа")
+    @JoinColumn(name = "id_заказа")
     private Order orderId;
     @OneToOne
     @Id
-    @JoinColumn(name = "ID_товара")
+    @JoinColumn(name = "id_товара")
     private Product productId;
     @Column(name = "Количество")
     private Integer count;

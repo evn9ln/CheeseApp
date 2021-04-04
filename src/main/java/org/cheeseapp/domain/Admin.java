@@ -2,12 +2,13 @@ package org.cheeseapp.domain;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="Admins")
+//@Entity
+@Table(name="admins")
 
 public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id_администратора")
     private Integer adminId;
     @Column(name="Имя")
     private String adminName;

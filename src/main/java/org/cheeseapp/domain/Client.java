@@ -3,24 +3,25 @@ package org.cheeseapp.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Clients")
+@Table(name="clients")
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_пользователя")
     private Integer clientId;
-    @Column(name="Фамилия")
+    @Column(name= "фамилия")
     private String clientSurname;
-    @Column(name="Имя")
+    @Column(name= "имя")
     private String clientName;
-    @Column(name="Номер_телефона")
+    @Column(name= "номер_телефона")
     private String phone;
-    @Column(name="E_mail")
+    @Column(name="e_mail")
     private String mail;
-    @Column(name="Логин")
+    @Column(name= "логин")
     private String clientLogin;
-    @Column(name="Пароль")
+    @Column(name= "пароль")
     private String clientPassword;
-    @Column(name="Адрес")
+    @Column(name= "адрес")
     private String address;
 
     public Client(String clientSurname, String clientName) {

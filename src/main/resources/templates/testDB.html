@@ -14,19 +14,17 @@
 </tr>
 </thead>
 <tbody>
-<tr th:if="${clients.empty}">
-    <td colspan="2"> No clients available </td>
-</tr>
+
 <tr th:each="client : ${clients}">
-    <td><span th:text="${client.clientId}"> Id </span></td>
-    <td><span th:text="${client.clientName}"> Name </span></td>
+    <td><span th:text="${client.clientName}"> Id </span></td>
+    <td><span th:text="${client.clientSurname}"> Name </span></td>
 </tr>
 </tbody>
 </table>
 
 <form method="post">
-    <input type="number" name="id" placeholder="Введите id" />
-    <input type="text" name="Name" placeholder="Введите Name" />
+    <input type="text" name="name" placeholder="Введите id" />
+    <input type="text" name="surname" placeholder="Введите Name" />
     <button type="submit">Добавить</button>
 </form>
 

@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StartController {
 
-    @Autowired
-    private ClientRepo clientRepo;
+    private final ClientRepo clientRepo;
+
+    public StartController(ClientRepo clientRepo) {
+        this.clientRepo = clientRepo;
+    }
 
     @GetMapping("/start")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="Guest") String name, Model model) {
@@ -30,14 +33,14 @@ public class StartController {
 
     @GetMapping("/testDB")
     public String listClients(Model model){
-        model.addAttribute("client", clientRepo.findAll());
+        model.addAttribute("clients", clientRepo.findAll());
         return "testDB";
     }
 
     @PostMapping("/testDB")
-    public String addClient(@RequestParam int id, @RequestParam String name) {
+    public String addClient(@RequestParam String name, @RequestParam String surname) {
         Client client = new Client();
-        client.setClientId(id);
+        client.setClientSurname(surname);
         client.setClientName(name);
         clientRepo.save(client);
         return "testDB";

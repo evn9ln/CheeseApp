@@ -2,14 +2,15 @@ package org.cheeseapp.domain;
 
 import javax.persistence.*;
 import java.util.Calendar;
-@Entity
-@Table(name = "Orders")
+//@Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_заказа")
     private Integer orderId;
     @ManyToOne
-    @JoinColumn(name="ID_пользователя")
+    @JoinColumn(name="id_пользователя")
     private Client idClient;
     @Column(name = "Сумма_заказа")
     private Integer orderCost;

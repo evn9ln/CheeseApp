@@ -2,11 +2,12 @@ package org.cheeseapp.domain;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "Products")
+//@Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_товара")
     private Integer productId;
     @Column(name = "Цена")
     private Integer cost;
