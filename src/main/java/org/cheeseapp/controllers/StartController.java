@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StartController {
 
-    @GetMapping("/start")
+    @GetMapping("/home")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="Guest") String name, Model model) {
         model.addAttribute("name", name);
-        return "start";
+        return "home";
     }
 
     @GetMapping
