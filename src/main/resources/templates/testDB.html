@@ -8,6 +8,7 @@
 <table>
     <thead>
     <tr>
+        <th> Id </th>
         <th> Name </th>
         <th> Surname </th>
     </tr>
@@ -17,6 +18,7 @@
         <td colspan="2"> No Clients Available </td>
     </tr>
     <tr th:each="client : ${clients}">
+        <td><span th:text="${client.clientId}"> Id </span></td>
         <td><span th:text="${client.clientName}"> Name </span></td>
         <td><span th:text="${client.clientSurname}"> Surname </span></td>
     </tr>

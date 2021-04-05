@@ -23,8 +23,7 @@ public class DatabaseController {
 
     @PostMapping("/testDB")
     public String addClient(@RequestParam String name, @RequestParam String surname, Model model) {
-        Integer clientId = (int)(Math.random()*100); //need to be changed
-        Client client = new Client(clientId, name, surname);
+        Client client = new Client(name, surname);
         clientRepo.save(client);
         Iterable<Client> clients = clientRepo.findAll();
         model.addAttribute("clients", clients);

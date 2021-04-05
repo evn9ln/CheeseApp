@@ -5,9 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="clients")
 public class Client {
-    @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO) some bullshit
     @Column(name = "id_пользователя")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer clientId;
     @Column(name= "фамилия")
     private String clientSurname;
@@ -24,20 +24,19 @@ public class Client {
     @Column(name= "адрес")
     private String address;
 
-    public Client(Integer clientId, String clientName, String clientSurname) {
-        this.clientId = clientId;
+    public Client() {
+    }
+
+    public Client(String clientName, String clientSurname) {
         this.clientName = clientName;
         this.clientSurname = clientSurname;
     }
 
-    public Client() {}
-
-
-    public int getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
