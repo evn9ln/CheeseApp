@@ -2,7 +2,7 @@ package org.cheeseapp.domain;
 
 import javax.persistence.*;
 import java.util.Calendar;
-//@Entity
+@Entity
 @Table(name = "orders")
 public class Order {
     @Id
@@ -12,20 +12,28 @@ public class Order {
     @ManyToOne
     @JoinColumn(name="id_пользователя")
     private Client idClient;
-    @Column(name = "Сумма_заказа")
+    @Column(name = "сумма_заказа")
     private Integer orderCost;
-    @Column(name = "Дата")
+    @Column(name = "дата")
     private Calendar orderDate;
-    @Column(name = "Статус")
+    @Column(name = "статус")
     private Boolean orderStatus;
 
 
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public Integer getOrderCost() {
+        return orderCost;
+    }
+
+    public void setOrderCost(Integer orderCost) {
+        this.orderCost = orderCost;
     }
 
     public Client getIdClient() {
@@ -36,13 +44,7 @@ public class Order {
         this.idClient = idClient;
     }
 
-    public int getOrderCost() {
-        return orderCost;
-    }
 
-    public void setOrderCost(int orderCost) {
-        this.orderCost = orderCost;
-    }
 
     public Calendar getOrderDate() {
         return orderDate;

@@ -2,20 +2,20 @@ package org.cheeseapp.domain;
 
 import javax.persistence.*;
 
-//@Entity
+@Entity
 @Table(name="admins")
 public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id_администратора")
     private Integer adminId;
-    @Column(name="Имя")
+    @Column(name="имя")
     private String adminName;
-    @Column(name="Фамилия")
+    @Column(name="фамилия")
     private String  adminSurname;
-    @Column(name="Логин")
+    @Column(name="логин")
     private String adminLogin;
-    @Column(name="Пароль")
+    @Column(name="пароль")
     private String adminPassword;
 
 
@@ -23,11 +23,11 @@ public class Admin {
     }
 
 
-    public int getAdminId() {
+    public Integer getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(int adminId) {
+    public void setAdminId(Integer adminId) {
         this.adminId = adminId;
     }
 

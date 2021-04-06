@@ -3,7 +3,7 @@ package org.cheeseapp.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-//@Entity
+@Entity
 @Table(name = "sets")
 public class Set implements Serializable {
     @ManyToOne
@@ -14,7 +14,7 @@ public class Set implements Serializable {
     @Id
     @JoinColumn(name = "id_товара")
     private Product productId;
-    @Column(name = "Количество")
+    @Column(name = "количество")
     private Integer count;
 
     public Order getOrderId() {
@@ -33,11 +33,11 @@ public class Set implements Serializable {
         this.productId = productId;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 
