@@ -5,11 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1> <!--remoteUser возвращает логин пользователя-->
 <a href="/products">Products List</a>
 <a href="/profile">Profile</a>
 <form th:action="@{/logout}" method="post">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- токен для spring security -->
     <input type="submit" value="Sign Out"/>
 </form>
 </body>

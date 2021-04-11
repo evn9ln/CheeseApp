@@ -5,10 +5,6 @@
     <title>Products list</title>
 </head>
 <body>
-<form th:action="@{/logout}" method="post">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <input type="submit" value="Sign Out"/>
-</form>
 <table>
     <thead>
     <tr>
@@ -32,18 +28,21 @@
 <form method="post">
     <input type="text" name="name" placeholder="Введите name" />
     <input type="text" name="price" placeholder="Введите price" />
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- token for spring security -->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <button type="submit">Добавить</button>
 </form>
 
-Изменение цены товара
+<p>Изменение цены товара</p>
 <form method="post" action="change">
-    введите название товара
-    <input type="text" name="name">
-    введите новую цену товара
-    <input type="number" name="price">
+    <input type="text" name="name" placeholder="Название товара">
+    <input type="number" name="price" placeholder="Новая цена">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <button type="submit">Изменить</button>
+</form>
+
+<form th:action="@{/logout}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <input type="submit" value="Sign Out"/>
 </form>
 </body>
 </html>

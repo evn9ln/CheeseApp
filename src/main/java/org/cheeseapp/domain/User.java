@@ -26,10 +26,21 @@ public class User {
     private String address;
     @Column(name = "active")
     private Boolean active;
-    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+
+    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER) //доп. таблица для enum создается сама,
+                                                                        // подгружаются "жадно" (т.е. при запросе подгружаются сразу все)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id")) //данное поле хранится в отдельной таблице с ролью и id
+    @Enumerated(EnumType.STRING) //enum храним в виде строки
+    private Set<Role> roles; //client,admin
+
+    public User() {
+    }
+
+    public User(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
 
     public Boolean getActive() {
         return active;
@@ -39,35 +50,12 @@ public class User {
         this.active = active;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", surname='" + surname + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", mail='" + mail + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public User() {
-    }
-
-    public User(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
     }
 
     public Integer getId() {
@@ -134,4 +122,19 @@ public class User {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mail='" + mail + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", active=" + active +
+                ", roles=" + roles +
+                '}';
+    }
 }

@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "sets")
+//Composite-id class must implement Serializable
 public class Set implements Serializable {
 
     @ManyToOne

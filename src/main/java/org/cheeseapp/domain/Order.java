@@ -2,11 +2,11 @@ package org.cheeseapp.domain;
 
 import javax.persistence.*;
 import java.util.Calendar;
-@Entity
+@Entity //указатель hibernate, что этот класс сущность бд (реляционное отображение)
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) //автогенерация айди от 1
     @Column(name = "order_id")
     private Integer id;
     @ManyToOne

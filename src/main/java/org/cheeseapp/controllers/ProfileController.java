@@ -20,6 +20,7 @@ public class ProfileController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userRepo.findByLogin(name);
+       // System.out.println(auth.toString());
         model.addAttribute("user", user);
         return "profile";
     }
