@@ -21,6 +21,7 @@ public class RegistrationController {
     public String registration(){
         return "registration";
     }
+
     @PostMapping("/registration")
     public String addUser(User user, Map<String,Object> model){
         User userFromDb=userRepo.findByLogin(user.getLogin());
@@ -28,11 +29,10 @@ public class RegistrationController {
              model.put("message", "User exists");
              return "registration";
          }
-         user.setRoles(Collections.singleton(Role.CLIENT));
+         user.setRoles(Collections.singleton(Role.CLIENT)); //set with one value (here client)
          user.setActive(true);
          userRepo.save(user);
         return "redirect:/login";
-
-
     }
+
 }
