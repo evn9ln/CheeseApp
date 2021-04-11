@@ -24,10 +24,20 @@ public class User {
     private String password;
     @Column(name= "address")
     private String address;
+    @Column(name = "active")
+    private Boolean active;
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
     @Override
     public String toString() {

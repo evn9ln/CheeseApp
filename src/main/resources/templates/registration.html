@@ -6,17 +6,20 @@
 </head>
 <body>
 <div th:if="${param.error}">
-    Invalid username or password.
+    Invalid username and password.
 </div>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
-<form th:action="@{/login}" method="post">
-    <div><label> Login : <input type="text" name="username"/> </label></div>
+
+<form th:action="@{/registration}" method="post">
+    <div><label> Login : <input type="text" name="login"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> Name: <input type="text" name="name"/> </label></div>
+    <div><label> Surname: <input type="text" name="surname"/> </label></div>
+    <div><label> E-mail: <input type="text" name="mail"/> </label></div>
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <div><input type="submit" value="Sign In"/></div>
+    <div><input type="submit" value="Sign Up"/></div>
 </form>
-<a href="/registration">Add new user</a>
 </body>
 </html>
