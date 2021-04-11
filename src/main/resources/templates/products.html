@@ -35,5 +35,15 @@
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- token for spring security -->
     <button type="submit">Добавить</button>
 </form>
+
+Изменение цены товара
+<form method="post" action="change">
+    введите название товара
+    <input type="text" name="name">
+    введите новую цену товара
+    <input type="number" name="price">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit">Изменить</button>
+</form>
 </body>
 </html>

@@ -30,4 +30,13 @@ public class DatabaseController {
         model.addAttribute("products", products);
         return "products";
     }
+    @PostMapping("/change")
+    public String changePrice(@RequestParam String name, @RequestParam Integer price, Model model){
+        Product productFromDb=productRepo.findByName(name);
+        productFromDb.setPrice(price);
+        productRepo.save(productFromDb);
+        Iterable<Product> products = productRepo.findAll();
+        model.addAttribute("products", products);
+        return "products";
+    }
 }
