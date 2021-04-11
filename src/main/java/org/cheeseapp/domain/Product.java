@@ -14,6 +14,13 @@ public class Product {
     @Column(name = "price")
     private Integer price;
 
+    public Product() {
+    }
+
+    public Product(String name, Integer price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public Integer getId() {
         return id;

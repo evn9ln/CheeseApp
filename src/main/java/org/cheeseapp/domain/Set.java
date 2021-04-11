@@ -6,6 +6,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "sets")
 public class Set implements Serializable {
+
     @ManyToOne
     @Id
     @JoinColumn(name = "order_id")
@@ -16,6 +17,9 @@ public class Set implements Serializable {
     private Product productId;
     @Column(name = "number")
     private Integer number;
+
+    public Set() {
+    }
 
     public Order getOrderId() {
         return orderId;
