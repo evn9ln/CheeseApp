@@ -7,44 +7,44 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_товара")
-    private Integer productId;
-    @Column(name = "цена")
-    private Integer cost;
-    @Column(name = "название")
-    private String productName;
+    @Column(name = "product_id")
+    private Integer id;
+    @Column(name = "price")
+    private Integer price;
+    @Column(name = "name")
+    private String name;
 
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getCost() {
-        return cost;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
-                ", cost=" + cost +
-                ", productName='" + productName + '\'' +
+                "id=" + id +
+                ", price=" + price +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

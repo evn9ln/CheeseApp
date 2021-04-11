@@ -7,69 +7,69 @@ import java.util.Calendar;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_заказа")
-    private Integer orderId;
+    @Column(name = "order_id")
+    private Integer id;
     @ManyToOne
-    @JoinColumn(name="id_пользователя")
-    private Client idClient;
-    @Column(name = "сумма_заказа")
-    private Integer orderCost;
-    @Column(name = "дата")
-    private Calendar orderDate;
-    @Column(name = "статус")
-    private Boolean orderStatus;
+    @JoinColumn(name = "user_id")
+    private User userId;
+    @Column(name = "order_sum")
+    private Integer orderSum;
+    @Column(name = "date")
+    private Calendar date;
+    @Column(name = "status")
+    private Boolean status;
 
-
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getOrderCost() {
-        return orderCost;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setOrderCost(Integer orderCost) {
-        this.orderCost = orderCost;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
-    public Client getIdClient() {
-        return idClient;
+    public Integer getOrderSum() {
+        return orderSum;
     }
 
-    public void setIdClient(Client idClient) {
-        this.idClient = idClient;
+    public void setOrderSum(Integer orderSum) {
+        this.orderSum = orderSum;
     }
 
-
-
-    public Calendar getOrderDate() {
-        return orderDate;
+    public Calendar getDate() {
+        return date;
     }
 
-    public void setOrderDate(Calendar orderDate) {
-        this.orderDate = orderDate;
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 
-    public Boolean getOrderStatus() {
-        return orderStatus;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setOrderStatus(Boolean orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + orderId +
-                ", idClient=" + idClient +
-                ", orderCost=" + orderCost +
-                ", orderDate=" + orderDate +
-                ", orderStatus=" + orderStatus +
+                "id=" + id +
+                ", userId=" + userId +
+                ", orderSum=" + orderSum +
+                ", date=" + date +
+                ", status=" + status +
                 '}';
     }
 }
+
+
+

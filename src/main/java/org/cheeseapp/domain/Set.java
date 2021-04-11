@@ -8,14 +8,14 @@ import java.io.Serializable;
 public class Set implements Serializable {
     @ManyToOne
     @Id
-    @JoinColumn(name = "id_заказа")
+    @JoinColumn(name = "order_id")
     private Order orderId;
     @OneToOne
     @Id
-    @JoinColumn(name = "id_товара")
+    @JoinColumn(name = "product_id")
     private Product productId;
-    @Column(name = "количество")
-    private Integer count;
+    @Column(name = "number")
+    private Integer number;
 
     public Order getOrderId() {
         return orderId;
@@ -33,12 +33,12 @@ public class Set implements Serializable {
         this.productId = productId;
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Set implements Serializable {
         return "Set{" +
                 "orderId=" + orderId +
                 ", productId=" + productId +
-                ", count=" + count +
+                ", number=" + number +
                 '}';
     }
 }
