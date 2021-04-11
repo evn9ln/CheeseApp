@@ -9,10 +9,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
     private Integer id;
-    @Column(name = "price")
-    private Integer price;
     @Column(name = "name")
     private String name;
+    @Column(name = "price")
+    private Integer price;
 
 
     public Integer getId() {
