@@ -41,6 +41,16 @@ public class User {
         this.surname = surname;
     }
 
+    public void set(User user) {
+        this.name = user.getName();
+        this.surname = user.getSurname();
+        this.mail = user.getMail();
+        this.phone = user.getPhone();
+        this.address = user.getAddress();
+        this.login = user.getLogin();
+        this.password = user.getPassword();
+    }
+
 
     public Boolean getActive() {
         return active;
