@@ -26,7 +26,7 @@ public class RegistrationController {
     public String addUser(User user, Map<String,Object> model){
         User userFromDb=userRepo.findByLogin(user.getLogin());
          if(userFromDb!=null){
-             model.put("message", "User exists");
+             model.put("message", "User with this login exists");
              return "registration";
          }
          user.setRoles(Collections.singleton(Role.CLIENT)); //set with one value (here client)
