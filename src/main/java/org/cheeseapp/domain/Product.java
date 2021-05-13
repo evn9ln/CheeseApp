@@ -1,6 +1,7 @@
 package org.cheeseapp.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "products")

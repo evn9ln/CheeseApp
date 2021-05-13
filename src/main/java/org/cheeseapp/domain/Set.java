@@ -5,21 +5,36 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "sets")
-//Composite-id class must implement Serializable
 public class Set implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "set_id")
+    private Integer setId;
 
-    @ManyToOne
-    @Id
     @JoinColumn(name = "order_id")
+    @ManyToOne
     private Order orderId;
-    @OneToOne
-    @Id
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product productId;
     @Column(name = "number")
     private Integer number;
 
     public Set() {
+    }
+
+    public Set(Order orderId, Product productId, Integer number) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.number = number;
+    }
+
+    public Integer getSetId() {
+        return setId;
+    }
+
+    public void setSetId(Integer setId) {
+        this.setId = setId;
     }
 
     public Order getOrderId() {
@@ -44,14 +59,5 @@ public class Set implements Serializable {
 
     public void setNumber(Integer number) {
         this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return "Set{" +
-                "orderId=" + orderId +
-                ", productId=" + productId +
-                ", number=" + number +
-                '}';
     }
 }

@@ -16,7 +16,7 @@ public class User {
     private String name;
     @Column(name= "phone_number")
     private String phone;
-    @Column(name="e_mail")
+    @Column(name= "e_mail")
     private String mail;
     @Column(name= "login")
     private String login;

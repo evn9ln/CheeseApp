@@ -1,10 +1,13 @@
 package org.cheeseapp.domain;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Date;
+
 @Entity //указатель hibernate, что этот класс сущность бд (реляционное отображение)
 @Table(name = "orders")
-public class Order {
+public class Order  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //автогенерация айди от 1
     @Column(name = "order_id")
@@ -15,9 +18,20 @@ public class Order {
     @Column(name = "order_sum")
     private Integer orderSum;
     @Column(name = "date")
-    private Calendar date;
+    private Date date;
     @Column(name = "status")
     private Boolean status;
+    public Order(User userId){
+        this.userId=userId;
+        this.date=new Date();
+        this.status=true;
+        this.orderSum=0;
+
+    }
+
+    public Order() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -43,11 +57,11 @@ public class Order {
         this.orderSum = orderSum;
     }
 
-    public Calendar getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
