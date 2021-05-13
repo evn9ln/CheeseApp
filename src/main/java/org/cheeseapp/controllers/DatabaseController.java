@@ -67,12 +67,18 @@ public class DatabaseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName();
         User user = userRepo.findByLogin(login);
-        Order orderFromDb = orderRepo.findByUserId(user);
-        if(orderFromDb == null){
+        Iterable<Order> ordersFromDb = orderRepo.findAllByUserIdAndStatus(user,false);
+
+        int counter=0;
+        for(Order order:ordersFromDb)
+            counter++;
+
+        if(counter==0){
             Order newOrder = new Order(user);
             orderRepo.save(newOrder);
         }
-        Order orderFromDb2=orderRepo.findByUserId(user);
+        Order orderFromDb2 = orderRepo.findByUserIdAndStatus(user,false);
+
         Set setFromDb = setRepo.findByOrderIdAndProductId(orderFromDb2,productFromDb);
         if(setFromDb == null) {
             Set newSet = new Set(orderFromDb2, productFromDb, number);
@@ -94,7 +100,7 @@ public class DatabaseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName();
         User user = userRepo.findByLogin(login);
-        Order orderFromDb=orderRepo.findByUserId(user);
+        Order orderFromDb=orderRepo.findByUserIdAndStatus(user,false);
         Iterable<Set> sets= setRepo.findAllByOrderId(orderFromDb);
 
         List<Product> products= new ArrayList<>();
@@ -106,4 +112,21 @@ public class DatabaseController {
         return "cart";
     }
 
+    @GetMapping("/orderStatus")
+    public String orderStatus(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+        User user = userRepo.findByLogin(login);
+        Iterable<Order> ordersFromDb = orderRepo.findAllByUserId(user);
+        Order orderMain;
+        for (Order order : ordersFromDb) {
+            if (order.getStatus() == false) {
+                order.setStatus(true);
+                orderRepo.save(order);
+            }
+        }
+        model.addAttribute("user", user);
+        return "profile";
+
+    }
 }
