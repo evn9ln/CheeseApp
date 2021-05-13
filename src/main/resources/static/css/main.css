@@ -1,0 +1,58 @@
+A {
+    text-decoration: none;
+    color: white;
+}
+
+A:hover{
+    color: white;
+}
+
+.brand {
+    color: #CC9900;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 7px;
+    padding-bottom: 2px;
+}
+
+.brand:hover {
+    color: #CC9900;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+
+.carousel {
+    margin-bottom: 4rem;
+}
+.carousel-caption {
+    font-family: Monotype Corsiva, cursive;
+    bottom: 11rem;
+    z-index: 10;
+}
+
+h1{
+    font-size: 79px;
+}
+.carousel-item {
+    height: 32rem;
+}
+.carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+}
