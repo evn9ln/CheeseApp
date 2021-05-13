@@ -24,7 +24,7 @@ public class Order  {
     public Order(User userId){
         this.userId=userId;
         this.date=new Date();
-        this.status=true;
+        this.status=false;
         this.orderSum=0;
 
     }

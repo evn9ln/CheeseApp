@@ -10,15 +10,13 @@
 <table class="table table-striped">
     <thead>
     <tr>
+        <th></th>
         <th> Id </th>
         <th> Name </th>
         <th> Price </th>
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${products.empty}">
-        <td colspan="2"> No Products Available </td>
-    </tr>
     <tr th:each="product : ${products}">
         <td><span></span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Wikicheese_-_Roquefort_-_20150417_-_003.jpg/1200px-Wikicheese_-_Roquefort_-_20150417_-_003.jpg" class="img-thumbnail" alt="Roquefort" height="200px" width="200px"></span></td>
         <td><span th:text="${product.id}"> Id </span></td>
@@ -35,26 +33,10 @@
     <button class="btn btn-warning" type="submit">Добавить в корзину</button>
 </form>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th> Id </th>
-        <th> Name </th>
-        <th> Price </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${products2.empty}">
-        <td colspan="2"> No Products Available </td>
-    </tr>
-    <tr th:each="product : ${products2}">
-        <td><span th:text="${product.id}"> Id </span></td>
-        <td><span th:text="${product.name}"> Name </span></td>
-        <td><span th:text="${product.price}"> Price </span> руб.</td>
-    </tr>
-    </tbody>
-</table>
-
+<form method="get" action="cart">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button class="btn btn-warning" type="submit">Корзина</button>
+</form>
 
 <form method="post">
     <input type="text" name="name" placeholder="Введите name" />

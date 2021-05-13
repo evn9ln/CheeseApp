@@ -61,20 +61,20 @@ public class DatabaseController {
     @PostMapping("/createOrder")
     public String createOrder(@RequestParam String productName,@RequestParam Integer number, Model model){
         Product productFromDb=productRepo.findByName(productName);
-        if(productFromDb==null){
+        if(productFromDb == null){
             return "products";
         }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName();
         User user = userRepo.findByLogin(login);
-        Order orderFromDb=orderRepo.findByUserId(user);
-        if(orderFromDb==null){
-            Order newOrder=new Order(user);
+        Order orderFromDb = orderRepo.findByUserId(user);
+        if(orderFromDb == null){
+            Order newOrder = new Order(user);
             orderRepo.save(newOrder);
         }
         Order orderFromDb2=orderRepo.findByUserId(user);
-        Set setFromDb=setRepo.findByOrderIdAndProductId(orderFromDb2,productFromDb);
-        if(setFromDb==null) {
+        Set setFromDb = setRepo.findByOrderIdAndProductId(orderFromDb2,productFromDb);
+        if(setFromDb == null) {
             Set newSet = new Set(orderFromDb2, productFromDb, number);
             setRepo.save(newSet);
 
@@ -88,4 +88,22 @@ public class DatabaseController {
 
         return "redirect:/products";
     }
+
+    @GetMapping("/cart")
+    public String orderList(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+        User user = userRepo.findByLogin(login);
+        Order orderFromDb=orderRepo.findByUserId(user);
+        Iterable<Set> sets= setRepo.findAllByOrderId(orderFromDb);
+
+        List<Product> products= new ArrayList<>();
+        for(Set set:sets){
+            products.add(set.getProductId());
+        }
+        model.addAttribute("products", products);
+
+        return "cart";
+    }
+
 }
