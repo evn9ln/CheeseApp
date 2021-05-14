@@ -5,46 +5,48 @@
     <title>Sign up</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/sign.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
 </head>
 <body class="text-center">
 <main class="form-signin">
     <a href="/"><img class="mb-4" th:src="@{img/sign.png}" alt="" width="110" height="80">
     </a>
     <div class="title"><a href="/">Roquefort cheese</a></div>
-<form th:action="@{/registration}" method="post">
+<form class="form-reg" th:action="@{/registration}" method="post">
 
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingLogin" name="login">
+        <input type="text" class="form-control" id="floatingLogin" name="login" required>
         <label for="floatingLogin">Login</label>
     </div>
 
     <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" name="password">
+        <input type="password" class="form-control" id="floatingPassword" name="password" required>
         <label for="floatingPassword">Password</label>
     </div>
 
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingName" name="name">
+        <input type="text" class="form-control" id="floatingName" name="name" required>
         <label for="floatingName">Name</label>
     </div>
 
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingSurname" name="surname">
+        <input type="text" class="form-control" id="floatingSurname" name="surname" required>
         <label for="floatingSurname">Surname</label>
     </div>
 
     <div class="form-floating">
-        <input type="email" class="form-control" id="floatingMail" name="mail">
+        <input type="email" class="form-control" id="floatingMail" name="mail" required>
         <label for="floatingMail">Email</label>
     </div>
 
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingPhone" name="phone">
+        <input type="text" class="phone-field form-control" id="floatingPhone" name="phone" data-rule-required="true" data-rule-minlength="10" data-msg="Введите номер телефона">
         <label for="floatingPhone">Phone</label>
     </div>
 
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingAddress" name="address">
+        <input type="text" class="form-control" id="floatingAddress" name="address" required>
         <label for="floatingAddress">Address</label>
     </div>
 
@@ -52,14 +54,15 @@
     <button class="w-100 btn btn-lg btn-warning" type="submit">Sign up</button>
 </form>
     <div class="signup-btn"><a class="w-100 btn btn-lg btn-outline-warning" href="/login" role="button">Have an account? Sign in</a></div>
-    <p class="mt-5 mb-3 text-muted">&copy; 2021–2021</p>
+    <p class="mt-5 mb-3 text-muted">Roquefort cheese &copy; 2021–2021</p>
 
-   <!-- <div class="fixed-bottom">
-        <div class="alert alert-warning" role="alert" th:if="${!message.isEmpty()}">
-            <p th:text= "${message}"/>
+    <div class="fixed-bottom">
+        <div class="alert alert-warning" role="alert" th:if="${not #strings.isEmpty(message)}">
+            User with the same login already exists!
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    </div> -->
+    </div>
+
 </main>
 </body>
 </html>

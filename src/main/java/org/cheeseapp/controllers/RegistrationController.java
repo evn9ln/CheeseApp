@@ -25,8 +25,8 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(User user, Map<String,Object> model){
         User userFromDb=userRepo.findByLogin(user.getLogin());
-         if(userFromDb!=null){
-             model.put("message", "User with this login exists");
+         if(userFromDb != null){
+             model.put("message", "existingUser");
              return "registration";
          }
          user.setRoles(Collections.singleton(Role.CLIENT)); //set with one value (here client)

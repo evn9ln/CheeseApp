@@ -1,0 +1,45 @@
+body{
+    height: 100%;
+    width: 100%;
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+}
+
+
+A {
+    text-decoration: none;
+    color: white;
+}
+
+A:hover{
+    color: white;
+}
+
+.navbar{
+    max-height: 50px;
+}
+
+header{
+    padding-bottom: 4rem;
+}
+
+.brand {
+    color: #CC9900;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 7px;
+    padding-bottom: 2px;
+}
+
+.brand:hover {
+    color: #CC9900;
+}
+
+#signout {
+    color: whitesmoke;
+}
+
+#signout:hover {
+    color: whitesmoke;
+}
