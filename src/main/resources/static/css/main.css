@@ -59,4 +59,11 @@ h1{
     color: #CC9900;
 }
 
+#signout {
+    color: whitesmoke;
+}
+
+#signout:hover {
+    color: whitesmoke;
+}
 
