@@ -1,4 +1,4 @@
-    <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Roquefort cheese</title>
@@ -27,20 +27,22 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
                     </li>
-                       </ul>
-                <button class="btn btn-outline-warning" type="submit"><a href="/login">Sign in</a></button>
-                <button class="btn" type="submit"><a href="/registration">Sign up</a></button>
+                </ul>
+                <form th:action="@{/logout}" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <button class="btn" type="submit"><a href="/registration">Sign out</a></button>
+                </form>
             </div>
         </div>
     </nav>
 </header>
 
 <div class="container-text">
-            <h1>Welcome, customer!</h1>
-            <p>Roquefort cheese is your source for gourmet cheese online.
-                Our expert cheesemongers source fine cheeses from across the globe, bringing you a selection full of one-of-a-kind finds that you won't see anywhere else.
-                Whether you're looking for artisan varieties for entertaining or cheeses to make that sandwich or recipe extra special, our cheese shop has exactly what you're looking for.
-                From extraordinary aged Parmesan and cheddar to the freshest mozzarella and of course Roquefort, we celebrate the craftsmanship and diversity within the wide world of specialty cheese.</p>
+    <h1>Welcome, customer!</h1>
+    <p>Roquefort cheese is your source for gourmet cheese online.
+        Our expert cheesemongers source fine cheeses from across the globe, bringing you a selection full of one-of-a-kind finds that you won't see anywhere else.
+        Whether you're looking for artisan varieties for entertaining or cheeses to make that sandwich or recipe extra special, our cheese shop has exactly what you're looking for.
+        From extraordinary aged Parmesan and cheddar to the freshest mozzarella and of course Roquefort, we celebrate the craftsmanship and diversity within the wide world of specialty cheese.</p>
 </div>
 
 <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">

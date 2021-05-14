@@ -69,11 +69,11 @@ public class DatabaseController {
         User user = userRepo.findByLogin(login);
         Iterable<Order> ordersFromDb = orderRepo.findAllByUserIdAndStatus(user,false);
 
-        int counter=0;
-        for(Order order:ordersFromDb)
+        int counter = 0;
+        for (Order order : ordersFromDb)
             counter++;
 
-        if(counter==0){
+        if (counter == 0) {
             Order newOrder = new Order(user);
             orderRepo.save(newOrder);
         }
@@ -83,7 +83,6 @@ public class DatabaseController {
         if(setFromDb == null) {
             Set newSet = new Set(orderFromDb2, productFromDb, number);
             setRepo.save(newSet);
-
         }
         else{
             setFromDb.setNumber(number+setFromDb.getNumber());

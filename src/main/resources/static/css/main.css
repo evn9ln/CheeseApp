@@ -1,3 +1,19 @@
+body {
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/egor.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: cover;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
 A {
     text-decoration: none;
     color: white;
@@ -5,6 +21,30 @@ A {
 
 A:hover{
     color: white;
+}
+
+p{
+    font-family: Century Gothic, sans-serif;
+    color: whitesmoke;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-left: 20px;
+    text-align: left;
+
+}
+
+h1{
+    font-family: Century Gothic, sans-serif;
+    color: whitesmoke;
+    font-size: 60px;
+    font-weight: bold;
+    padding-top: 17%;
+    padding-left: 20px;
+}
+
+.container-text{
+    width: 650px;
+    word-wrap: break-word;
 }
 
 .brand {
@@ -19,40 +59,4 @@ A:hover{
     color: #CC9900;
 }
 
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
 
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
-
-.carousel {
-    margin-bottom: 4rem;
-}
-.carousel-caption {
-    font-family: Monotype Corsiva, cursive;
-    bottom: 11rem;
-    z-index: 10;
-}
-
-h1{
-    font-size: 79px;
-}
-.carousel-item {
-    height: 32rem;
-}
-.carousel-item > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 32rem;
-}
