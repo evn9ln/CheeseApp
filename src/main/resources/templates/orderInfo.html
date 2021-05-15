@@ -33,42 +33,54 @@
 
 <table class="table table-striped">
     <tbody>
-    <tr th:each="product : ${products}">
+    <tr th:each="orderInfo : ${ordersInfo}">
         <td>
         <span>
-        <img th:src="${product.imgLink}" alt="" height="200px" width="200px">
             <div class="span-text"></div>
-        <p th:text="'ID: ' + ${product.id}"></p>
-        <p th:text="'Name: ' + ${product.name}"></p>
-        <p th:text="'Cost: ' + ${product.price} + ' RUB'"></p>
+        <p th:text="'clientName: ' + ${orderInfo.clientName}"></p>
+        <p th:text="'phoneNumber: ' + ${orderInfo.phoneNumber}"></p>
+        <p th:text="'date: ' + ${#dates.format(orderInfo.date, 'dd-MM-yyyy HH:mm')}"></p>
+        <p th:text="'orderSum: ' + ${orderInfo.orderSum}+'RUB'"></p>
             </div>
         </span>
         </td>
-        <td><span th:text="${product.description}"></span></td>
+        <td>
+            <tr th:each="productList: ${orderInfo.productList}">
+             <td>
+            <span>
+                <p th:text="'name: ' + ${productList.productName}"></p>
+                <p th:text="'cost: ' + ${productList.cost}"></p>
+                <p th:text="'count: ' + ${productList.count}"></p>
+                </span>
+             </td>
+            </tr>
+        </span></td>
     </tr>
     </tbody>
 </table>
-<p>Добавление товара</p>
-<form method="post">
-    <input type="text" name="name" placeholder="Введите name" />
-    <input type="text" name="price" placeholder="Введите price" />
-    <input type="text" name="description" placeholder="Введите description" />
-    <input type="text" name="imgLink" placeholder="Введите imgLink" />
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <button class="btn btn-warning" type="submit">Добавить</button>
-</form>
 
-<p>Изменение товара</p>
-<form method="post" action="change">
-    <input type="number" name="id" placeholder="Id" required>
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="number" name="price" placeholder="Price" required>
-    <input type="text" name="description" placeholder="Description" required>
-    <input type="text" name="imgLink" placeholder="imgLink" required>
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <button class="btn btn-warning" type="submit">Изменить</button>
-</form>
 
-</form>
+
+<script>document.addEventListener('DOMContentLoaded', () => {
+
+    const getSort = ({ target }) => {
+        const order = (target.dataset.order = -(target.dataset.order || -1));
+        const index = [...target.parentNode.cells].indexOf(target);
+        const collator = new Intl.Collator(['en', 'ru'], { numeric: true });
+        const comparator = (index, order) => (a, b) => order * collator.compare(
+            a.children[index].innerHTML,
+            b.children[index].innerHTML
+        );
+
+        for(const tBody of target.closest('table').tBodies)
+            tBody.append(...[...tBody.rows].sort(comparator(index, order)));
+
+        for(const cell of target.parentNode.cells)
+            cell.classList.toggle('sorted', cell === target);
+    };
+
+    document.querySelectorAll('.table_sort thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
+
+});</script>
 </body>
 </html>

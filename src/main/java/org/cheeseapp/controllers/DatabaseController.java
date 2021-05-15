@@ -1,9 +1,6 @@
 package org.cheeseapp.controllers;
 
-import org.cheeseapp.domain.Order;
-import org.cheeseapp.domain.Product;
-import org.cheeseapp.domain.Set;
-import org.cheeseapp.domain.User;
+import org.cheeseapp.domain.*;
 import org.cheeseapp.repos.OrderRepo;
 import org.cheeseapp.repos.ProductRepo;
 import org.cheeseapp.repos.SetRepo;
@@ -39,6 +36,12 @@ public class DatabaseController {
     public String listProducts(Model model){
        Iterable<Product> products = productRepo.findAll();
         model.addAttribute("products", products);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+        User user = userRepo.findByLogin(login);
+        Collection<Role> roles=user.getRoles();
+        if(roles.size()>1)
+            return "productsAdmin";
         return "products";
     }
 

@@ -15,7 +15,7 @@ public class Product {
     private Integer price;
     @Column(name = "description")
     private String description;
-    @Column(name = "imglink")
+    @Column(name = "img_link")
     private String imgLink;
 
     public Product() {
