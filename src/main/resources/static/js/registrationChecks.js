@@ -1,20 +1,21 @@
-// вешаем маску на телефон
-$('.phone-field').inputmask("+7(999)999-9999");
+function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
 
-// добавляем правило для валидации телефона
-jQuery.validator.addMethod("checkMaskPhone", function(value, element) {
-    return /\+\d{1}\(\d{3}\)\d{3}-\d{4}/g.test(value);
-});
+function validate() {
+    const $result = $("#result");
+    const email = $("#email").val();
+    $result.text("");
 
-// получаем нашу форму по class
-var form = $('.form-reg');
-
-// включаем валидацию в форме
-form.validate();
-
-// вешаем валидацию на поле с телефоном по классу
-$.validator.addClassRules({
-    'phone-field': {
-        checkMaskPhone: true,
+    if (validateEmail(email)) {
+        $result.text(email + " is valid :)");
+        $result.css("color", "green");
+    } else {
+        $result.text(email + " is not valid :(");
+        $result.css("color", "red");
     }
-});
+    return false;
+}
+
+$("#validate").on("click", validate);

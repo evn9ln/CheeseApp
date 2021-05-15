@@ -21,6 +21,7 @@ import javax.persistence.CollectionTable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DatabaseController {
@@ -42,19 +43,26 @@ public class DatabaseController {
     }
 
     @PostMapping("/products")
-    public String addProduct(@RequestParam String name, @RequestParam Integer price, Model model) {
-        Product product = new Product(name, price);
+    public String addProduct(@RequestParam String name, @RequestParam Integer price, @RequestParam String description, @RequestParam String imgLink, Model model) {
+        Product product = new Product(name, price, description, imgLink);
         productRepo.save(product);
         Iterable<Product> products = productRepo.findAll();
         model.addAttribute("products", products);
         return "products";
     }
     @PostMapping("/change")
-    public String changePrice(@RequestParam String name, @RequestParam Integer price, Model model){
-        Product productFromDb=productRepo.findByName(name);
-        productFromDb.setPrice(price);
-        productRepo.save(productFromDb);
-        Iterable<Product> products = productRepo.findAll();
+    public String changePrice(Product product, Model model){
+        Optional<Product> productFromDb = productRepo.findById(product.getId());
+        Iterable<Product> products;
+        if(productFromDb.isEmpty()) {
+            products = productRepo.findAll();
+            model.addAttribute("products", products);
+            return "products";
+        }
+        Product newProduct = productFromDb.get();
+        newProduct.setProduct(product);
+        productRepo.save(newProduct);
+        products = productRepo.findAll();
         model.addAttribute("products", products);
         return "products";
     }

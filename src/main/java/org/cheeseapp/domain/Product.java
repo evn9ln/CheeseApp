@@ -1,6 +1,7 @@
 package org.cheeseapp.domain;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.io.Serializable;
 
 @Entity
@@ -14,6 +15,10 @@ public class Product {
     private String name;
     @Column(name = "price")
     private Integer price;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "imgLink")
+    private String imgLink;
 
     public Product() {
     }
@@ -21,6 +26,20 @@ public class Product {
     public Product(String name, Integer price) {
         this.name = name;
         this.price = price;
+    }
+
+    public Product(String name, Integer price, String description, String imgLink) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.imgLink = imgLink;
+    }
+
+    public void setProduct(Product product) {
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.description = product.getDescription();
+        this.imgLink = product.getImgLink();
     }
 
     public Integer getId() {
@@ -47,12 +66,30 @@ public class Product {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+                ", description='" + description + '\'' +
+                ", imgLink='" + imgLink + '\'' +
                 '}';
     }
 }
