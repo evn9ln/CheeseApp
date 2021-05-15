@@ -114,6 +114,7 @@ public class DatabaseController {
         for(Set set:sets){
             products.add(set.getProductId());
         }
+
         model.addAttribute("products", products);
 
         return "cart";
@@ -133,7 +134,7 @@ public class DatabaseController {
             }
         }
         model.addAttribute("user", user);
-        return "profile";
+        return "redirect:/profile";
 
     }
 }

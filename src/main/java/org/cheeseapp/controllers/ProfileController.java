@@ -1,7 +1,9 @@
 package org.cheeseapp.controllers;
 
+import org.cheeseapp.domain.Order;
 import org.cheeseapp.domain.Product;
 import org.cheeseapp.domain.User;
+import org.cheeseapp.repos.OrderRepo;
 import org.cheeseapp.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,14 +19,20 @@ public class ProfileController {
 
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private OrderRepo orderRepo;
 
     @GetMapping("/profile")
-    public String profile(Model model) {
+    public String profile(Model model, Model model2) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName();
         User user = userRepo.findByLogin(login);
-       // System.out.println(auth.toString());
+        Iterable<Order> ordersFromDb=orderRepo.findAllByUserId(user);
+
+
+        model2.addAttribute("orders",ordersFromDb);
         model.addAttribute("user", user);
+
         return "profile";
     }
 

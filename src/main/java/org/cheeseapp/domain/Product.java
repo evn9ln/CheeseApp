@@ -1,8 +1,6 @@
 package org.cheeseapp.domain;
 
 import javax.persistence.*;
-import java.awt.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "products")
@@ -17,7 +15,7 @@ public class Product {
     private Integer price;
     @Column(name = "description")
     private String description;
-    @Column(name = "imgLink")
+    @Column(name = "imglink")
     private String imgLink;
 
     public Product() {

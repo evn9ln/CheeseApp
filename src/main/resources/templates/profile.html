@@ -42,7 +42,25 @@
     <p><input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /></p>
     <p><button type="submit">Edit profile</button></p>
 </form>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Cost</th>
+        <th>Status</th>
 
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td><span th:text="${order.id}"> Id </span></td>
+        <td><span th:text="${#dates.format(order.date, 'dd-MM-yyyy HH:mm')}"> Date</span></td>
+        <td><span th:text="${order.orderSum}"> Cost </span> руб.</td>
+        <td><span th:text="${order.status}"> Status </span></td>
+    </tr>
+    </tbody>
+</table>
 <form th:action="@{/logout}" method="post">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <input type="submit" value="Sign Out"/>
