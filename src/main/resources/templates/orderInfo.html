@@ -44,17 +44,11 @@
             </div>
         </span>
         </td>
-        <td>
-            <tr th:each="productList: ${orderInfo.productList}">
-             <td>
-            <span>
-                <p th:text="'name: ' + ${productList.productName}"></p>
-                <p th:text="'cost: ' + ${productList.cost}"></p>
-                <p th:text="'count: ' + ${productList.count}"></p>
+            <td>
+            <span th:each="product : ${orderInfo.productList}">
+                <p th:text="'Name: ' + ${product.productName} + ', Cost: ' + ${product.cost} + ', Count: ' + ${product.count}"> </p>
                 </span>
-             </td>
-            </tr>
-        </span></td>
+            </td>
     </tr>
     </tbody>
 </table>

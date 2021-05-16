@@ -6,12 +6,32 @@ tr, span {
     float: none;
 }
 
-p {
-    padding-left: 20rem;
+.prod-p {
+    padding-left: 17rem;
 }
 
 .span-descrip {
 }
 
 .td-descrip {;
+}
+
+.change-form input{
+    font-family: Century Gothic, sans-serif;
+    border:0;
+    border-radius: 10px;
+}
+
+.add-form input{
+    font-family: Century Gothic, sans-serif;
+    border:0;
+    border-radius: 10px;
+}
+
+
+.form-p {
+    font-family: Century Gothic, sans-serif;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 30px;
 }

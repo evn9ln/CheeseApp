@@ -1,10 +1,10 @@
 package org.cheeseapp.domain;
 
 public class ProductStatistic {
-   private Integer id;
-   private String productName;
-   private Integer count;
-   private Integer cost;
+    private Integer id;
+    private String productName;
+    private Integer count;
+    private Integer cost;
 
     public ProductStatistic(Integer id, String productName, Integer count, Integer cost) {
         this.id = id;

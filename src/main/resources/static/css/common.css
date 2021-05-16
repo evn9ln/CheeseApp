@@ -1,9 +1,14 @@
 body{
     height: 100%;
     width: 100%;
+    background-image: url(../img/common-back.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     -moz-background-size: 100%;
     -webkit-background-size: 100%;
     -o-background-size: 100%;
+    background-size: cover;
 }
 
 
@@ -21,7 +26,7 @@ A:hover{
 }
 
 header{
-    padding-bottom: 4rem;
+    padding-bottom: 3rem;
 }
 
 .brand {
@@ -42,4 +47,35 @@ header{
 
 #signout:hover {
     color: whitesmoke;
+}
+
+.adm-btm{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-left: 10%;
+}
+
+.change-prof-form{
+    font-family: Century Gothic, sans-serif;
+    padding-top: 2rem;
+    float: left;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.change-prof-form input[type=text] {
+    font-family: Century Gothic, sans-serif;
+    padding:10px;
+    border:0;
+    border-radius: 10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.profile-table-container{
+    margin:0;
+    max-width: 800px;
+}
+
+.container-change-prof{
+    float: left;
 }

@@ -74,47 +74,45 @@ public class ProfileController {
     }
     @GetMapping("/statisticPage")
     public String statisticPage(Model model){
-        Iterable<Product> allProducts=productRepo.findAll();
+        Iterable<Product> allProducts = productRepo.findAll();
         Collection<ProductStatistic> allProductStatistic=new ArrayList<ProductStatistic>() ;
         for(Product product:allProducts){
-            int count=0;
+            int count = 0;
             Iterable<Set> allSetsWithProductName=setRepo.findAllByProductId(product);
             for(Set set:allSetsWithProductName){
                 count+=set.getNumber();
 
             }
-            ProductStatistic productStatistic=new ProductStatistic(product.getId(),
+            ProductStatistic productStatistic = new ProductStatistic(product.getId(),
                     product.getName(),count,product.getPrice()*count);
             allProductStatistic.add(productStatistic);
         }
         model.addAttribute("productStatistic",allProductStatistic);
         return "productStatistic";
-
-
     }
 
     @GetMapping("/orderPage")
     public String orderPage(Model model) {
-        Iterable<Order> allOrders=orderRepo.findAll();
-        ArrayList<OrderInfo> allOrdersInfo=new ArrayList<OrderInfo>();
-        for(Order order: allOrders){
-            String clientName=order.getUserId().getName();
-            String phoneNumber=order.getUserId().getPhone();
-            Date date=order.getDate();
-            Integer orderSum=order.getOrderSum();
-            Iterable<Set> setsForOrder=setRepo.findAllByOrderId(order);
-            ArrayList<ProductStatistic> productList=new ArrayList<>();
-            int counter=0;
-            for(Set set: setsForOrder){
+        Iterable<Order> allOrders = orderRepo.findAll();
+        List<OrderInfo> allOrdersInfo = new ArrayList<OrderInfo>();
+        for (Order order : allOrders) {
+            String clientName = order.getUserId().getName();
+            String phoneNumber = order.getUserId().getPhone();
+            Date date = order.getDate();
+            Integer orderSum = order.getOrderSum();
+            Iterable<Set> setsForOrder = setRepo.findAllByOrderId(order);
+            List<ProductStatistic> productList = new ArrayList<>();
+            int counter = 0;
+            for (Set set : setsForOrder) {
                 counter++;
-                ProductStatistic productStatistic=new ProductStatistic(counter,set.getProductId().getName(),
-                        set.getNumber(),set.getNumber()*set.getProductId().getPrice());
+                ProductStatistic productStatistic = new ProductStatistic(counter, set.getProductId().getName(),
+                        set.getNumber(), set.getNumber() * set.getProductId().getPrice());
                 productList.add(productStatistic);
             }
-            OrderInfo orderInfo=new OrderInfo(clientName,phoneNumber,date,orderSum,productList);
+            OrderInfo orderInfo = new OrderInfo(clientName, phoneNumber, date, orderSum, productList);
             allOrdersInfo.add(orderInfo);
         }
-        model.addAttribute("ordersInfo",allOrdersInfo);
+        model.addAttribute("ordersInfo", allOrdersInfo);
 
         return "orderInfo";
     }

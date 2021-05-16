@@ -33,42 +33,41 @@
 
 <table class="table table-striped">
     <tbody>
-    <tr th:each="product : ${products}">
+    <tr class="table-dark" th:each="product : ${products}">
         <td>
         <span>
         <img th:src="${product.imgLink}" alt="" height="200px" width="200px">
             <div class="span-text"></div>
-        <p th:text="'ID: ' + ${product.id}"></p>
-        <p th:text="'Name: ' + ${product.name}"></p>
-        <p th:text="'Cost: ' + ${product.price} + ' RUB'"></p>
+        <p class="prod-p" th:text="'ID: ' + ${product.id}"></p>
+        <p class="prod-p" th:text="'Name: ' + ${product.name}"></p>
+        <p class="prod-p" th:text="'Cost: ' + ${product.price} + ' RUB'"></p>
             </div>
         </span>
         </td>
-        <td><span th:text="${product.description}"></span></td>
+        <td width="650px"><span th:text="${product.description}"></span></td>
     </tr>
     </tbody>
 </table>
-<p>Добавление товара</p>
-<form method="post">
-    <input type="text" name="name" placeholder="Введите name" />
-    <input type="text" name="price" placeholder="Введите price" />
-    <input type="text" name="description" placeholder="Введите description" />
-    <input type="text" name="imgLink" placeholder="Введите imgLink" />
+<p class="form-p">Add product</p>
+<form class="add-form" method="post">
+    <input type="text" name="name" placeholder="Name" />
+    <input type="text" name="price" placeholder="Price" />
+    <input type="text" name="description" placeholder="Description" />
+    <input type="text" name="imgLink" placeholder="imgLink" />
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <button class="btn btn-warning" type="submit">Добавить</button>
+    <button class="btn btn-warning" type="submit">Add</button>
 </form>
 
-<p>Изменение товара</p>
-<form method="post" action="change">
+<p class="form-p">Change product</p>
+<form class="change-form" method="post" action="change">
     <input type="number" name="id" placeholder="Id" required>
     <input type="text" name="name" placeholder="Name" required>
     <input type="number" name="price" placeholder="Price" required>
     <input type="text" name="description" placeholder="Description" required>
     <input type="text" name="imgLink" placeholder="imgLink" required>
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <button class="btn btn-warning" type="submit">Изменить</button>
+    <button class="btn btn-warning" type="submit">Change</button>
 </form>
 
-</form>
 </body>
 </html>

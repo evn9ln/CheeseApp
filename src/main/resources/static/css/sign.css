@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -8,7 +9,15 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-image: url(../img/common-back.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: cover;
+  font-family: Century Gothic, sans-serif;
 }
 
 .form-signin {
@@ -40,15 +49,23 @@ body {
 
 A {
   text-decoration: none;
-  color: black;
+  color: whitesmoke;
 }
 
 A:hover{
-  color: black;
+  color: whitesmoke;
+}
+
+h1{
+  color: whitesmoke;
 }
 
 .title {
   font-family: Monotype Corsiva, cursive;
   font-size: 40px;
   font-weight: bold;
+}
+
+.mt-5{
+  color: whitesmoke;
 }

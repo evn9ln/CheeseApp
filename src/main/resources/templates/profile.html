@@ -31,6 +31,7 @@
     </nav>
 </header>
 
+<div class="container-change-prof">
 <form class="change-prof-form" action="changeprof" th:object="${user}" method="post">
     <p><input type="text" name="name" th:field="*{name}" placeholder="Имя"></p>
     <p><input type="text" name="surname" th:field="*{surname}" placeholder="Фамилия"></p>
@@ -40,11 +41,13 @@
     <p><input type="text" name="login" th:field="*{login}" placeholder="Логи"></p>
     <p><input type="text" name="password" th:field="*{password}" placeholder="Пароль"></p>
     <p><input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /></p>
-    <p><button type="submit">Edit profile</button></p>
+    <p><button class="btn btn-warning" type="submit">Edit profile</button></p>
 </form>
+</div>
+<div class="profile-table-container">
 <table class="table table-striped">
     <thead>
-    <tr>
+    <tr class="table-dark">
         <th>Id</th>
         <th>Date</th>
         <th>Cost</th>
@@ -53,7 +56,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="order : ${orders}">
+    <tr class="table-dark" th:each="order : ${orders}">
         <td><span th:text="${order.id}"> Id </span></td>
         <td><span th:text="${#dates.format(order.date, 'dd-MM-yyyy HH:mm')}"> Date</span></td>
         <td><span th:text="${order.orderSum}"> Cost </span> руб.</td>
@@ -61,10 +64,6 @@
     </tr>
     </tbody>
 </table>
-<form th:action="@{/logout}" method="post">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <input type="submit" value="Sign Out"/>
-</form>
-
+</div>
 </body>
 </html>
