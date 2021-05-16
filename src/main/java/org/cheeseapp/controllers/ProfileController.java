@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -100,16 +100,17 @@ public class ProfileController {
             String phoneNumber = order.getUserId().getPhone();
             Date date = order.getDate();
             Integer orderSum = order.getOrderSum();
+            Boolean status=order.getStatus();
             Iterable<Set> setsForOrder = setRepo.findAllByOrderId(order);
-            List<ProductStatistic> productList = new ArrayList<>();
-            int counter = 0;
+            ArrayList<ProductStatistic> productList = new ArrayList<>();
+
             for (Set set : setsForOrder) {
-                counter++;
-                ProductStatistic productStatistic = new ProductStatistic(counter, set.getProductId().getName(),
+
+                ProductStatistic productStatistic = new ProductStatistic(set.getProductId().getName(),
                         set.getNumber(), set.getNumber() * set.getProductId().getPrice());
                 productList.add(productStatistic);
             }
-            OrderInfo orderInfo = new OrderInfo(clientName, phoneNumber, date, orderSum, productList);
+            OrderInfo orderInfo = new OrderInfo(clientName, phoneNumber, date, orderSum, productList,status);
             allOrdersInfo.add(orderInfo);
         }
         model.addAttribute("ordersInfo", allOrdersInfo);

@@ -42,7 +42,7 @@
     </thead>
     <tbody>
 
-    <tr class="table-dark" th:each="product : ${productList}">
+    <tr class="table-dark" th:each="product : ${productStatistic}">
         <td><span th:text="${product.id}"> Id </span></td>
         <td><span th:text="${product.productName}"> Name </span></td>
         <td><span th:text="${product.cost}"> Cost </span> руб.</td>

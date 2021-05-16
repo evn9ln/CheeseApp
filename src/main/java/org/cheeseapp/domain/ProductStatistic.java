@@ -13,6 +13,12 @@ public class ProductStatistic {
         this.cost = cost;
     }
 
+    public ProductStatistic(String productName, Integer count, Integer cost) {
+        this.productName = productName;
+        this.count = count;
+        this.cost = cost;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -49,6 +49,11 @@
                 <p th:text="'Name: ' + ${product.productName} + ', Cost: ' + ${product.cost} + ', Count: ' + ${product.count}"> </p>
                 </span>
             </td>
+        <td>
+            <span>
+                <p th:text="'Status: ' +${orderInfo.status}"></p>
+            </span>
+        </td>
     </tr>
     </tbody>
 </table>
