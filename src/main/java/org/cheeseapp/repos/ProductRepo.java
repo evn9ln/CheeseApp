@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface ProductRepo extends CrudRepository<Product, Integer> {
     Product findByName(String name);
+
     Optional<Product> findById(Integer id);
 }

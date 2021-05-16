@@ -10,7 +10,9 @@ public class StartController {
 
     @GetMapping
     public String main(Model model) {
-        if(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) { return "mainLoggedIn"; }
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+            return "mainLoggedIn";
+        }
         return "main";
     }
 }

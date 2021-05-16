@@ -11,13 +11,13 @@ public class OrderInfo {
     private Boolean status;
     private ArrayList<ProductStatistic> productList;
 
-    public OrderInfo(String clientName, String phoneNumber, Date date, Integer orderSum, ArrayList<ProductStatistic> productList,Boolean status) {
+    public OrderInfo(String clientName, String phoneNumber, Date date, Integer orderSum, ArrayList<ProductStatistic> productList, Boolean status) {
         this.clientName = clientName;
         this.phoneNumber = phoneNumber;
         this.date = date;
         this.orderSum = orderSum;
         this.productList = productList;
-        this.status=status;
+        this.status = status;
     }
 
     public Boolean getStatus() {

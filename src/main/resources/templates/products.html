@@ -50,9 +50,9 @@
 </table>
 
 <div class="text-center">
-<form class="add-form" method="post" action="createOrder">
+<form class="add-form" method="post" action="createSet">
     <input type="text" name="productName" placeholder="Enter name">
-    <input type="number" name="number" placeholder="Enter quantity" min="1" max="100">
+    <input type="number" name="number" placeholder="Enter quantity" min="1" max="100" value="1">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <button class="btn btn-warning" type="submit">Add in cart</button>
 </form>
@@ -64,7 +64,7 @@
 </div>
 <div class="fixed-bottom text-center">
     <div class="alert alert-warning" role="alert" th:if="${not #strings.isEmpty(message)}">
-        Wrong product name! Try again.
+        Wrong product name or number! Try again.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 </div>

@@ -5,6 +5,9 @@ import org.cheeseapp.repos.OrderRepo;
 import org.cheeseapp.repos.ProductRepo;
 import org.cheeseapp.repos.SetRepo;
 import org.cheeseapp.repos.UserRepo;
+import org.cheeseapp.services.OrderService;
+import org.cheeseapp.services.ProductService;
+import org.cheeseapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.ArrayList;
@@ -33,89 +37,46 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String profile(Model model, Model model2) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User user = userRepo.findByLogin(login);
-        Iterable<Order> ordersFromDb=orderRepo.findAllByUserId(user);
-
-
-        model2.addAttribute("orders",ordersFromDb);
+        User user = UserService.getCurrentUser(userRepo);
+        model2.addAttribute("orders", orderRepo.findAllByUserId(user));
         model.addAttribute("user", user);
-        Collection<Role> roles=user.getRoles();
-        if(roles.size()>1)
+        if (user.getRoles().size() > 1)
             return "profileAdmin";
         return "profile";
     }
 
     @PostMapping("/changeprof")
-    public String changeProf(User user, Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User userFromDb = userRepo.findByLogin(login);
+    public String changeProf(User user, Model model) {
+        User userFromDb = UserService.getCurrentUser(userRepo);
         userFromDb.set(user);
         userRepo.save(userFromDb);
-
-        Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-        String login2 = auth.getName();
-        User userFromDb2 = userRepo.findByLogin(login2);
-        model.addAttribute("user", userFromDb2);
+        model.addAttribute("user", userFromDb);
         return "redirect:/profile";
     }
 
-    @GetMapping("/profileAdmin")
-    public String profileAdmin(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User user = userRepo.findByLogin(login);
+//    @GetMapping("/profileAdmin")
+//    public String profileAdmin(Model model) {
+//        User user = userRepo.findByLogin(UserService.getCurrentUserLogin());
+//        model.addAttribute("user", user);
+//        return "profileAdmin";
+//    }
 
-        model.addAttribute("user", user);
-
-        return "profileAdmin";
-    }
     @GetMapping("/statisticPage")
-    public String statisticPage(Model model){
-        Iterable<Product> allProducts=productRepo.findAll();
-        Collection<ProductStatistic> allProductStatistic=new ArrayList<ProductStatistic>() ;
-        for(Product product:allProducts){
-            int count=0;
-            Iterable<Set> allSetsWithProductName=setRepo.findAllByProductId(product);
-            for(Set set:allSetsWithProductName){
-                count+=set.getNumber();
-
-            }
-            ProductStatistic productStatistic=new ProductStatistic(product.getId(),
-                    product.getName(),count,product.getPrice()*count);
-            allProductStatistic.add(productStatistic);
-        }
-        model.addAttribute("productStatistic",allProductStatistic);
+    public String statisticPage(Model model) {
+        model.addAttribute("productStatistic", ProductService.getProductsStatistic(productRepo, setRepo));
         return "productStatistic";
     }
 
     @GetMapping("/orderPage")
     public String orderPage(Model model) {
-        Iterable<Order> allOrders = orderRepo.findAll();
-        ArrayList<OrderInfo> allOrdersInfo = new ArrayList<OrderInfo>();
-        for (Order order : allOrders) {
-            String clientName = order.getUserId().getName();
-            String phoneNumber = order.getUserId().getPhone();
-            Date date = order.getDate();
-            Integer orderSum = order.getOrderSum();
-            Boolean status=order.getStatus();
-            Iterable<Set> setsForOrder = setRepo.findAllByOrderId(order);
-            ArrayList<ProductStatistic> productList = new ArrayList<>();
-
-            for (Set set : setsForOrder) {
-
-                ProductStatistic productStatistic = new ProductStatistic(set.getProductId().getName(),
-                        set.getNumber(), set.getNumber() * set.getProductId().getPrice());
-                productList.add(productStatistic);
-            }
-            OrderInfo orderInfo = new OrderInfo(clientName, phoneNumber, date, orderSum, productList,status);
-            allOrdersInfo.add(orderInfo);
-        }
-        model.addAttribute("ordersInfo", allOrdersInfo);
-
+        model.addAttribute("ordersInfo", OrderService.getAllOrdersInfo(orderRepo, setRepo));
         return "orderInfo";
+    }
+
+    @PostMapping("/changeStatus")
+    public String changeStatus(@RequestParam Integer orderId, @RequestParam(value = "select") String status) {
+        OrderService.changeOrderStatus(orderRepo, orderId, status);
+        return "redirect:/orderPage";
     }
 
 }

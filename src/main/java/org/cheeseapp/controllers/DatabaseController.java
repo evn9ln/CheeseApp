@@ -5,6 +5,10 @@ import org.cheeseapp.repos.OrderRepo;
 import org.cheeseapp.repos.ProductRepo;
 import org.cheeseapp.repos.SetRepo;
 import org.cheeseapp.repos.UserRepo;
+import org.cheeseapp.services.OrderService;
+import org.cheeseapp.services.ProductService;
+import org.cheeseapp.services.SetService;
+import org.cheeseapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,115 +37,60 @@ public class DatabaseController {
     private SetRepo setRepo;
 
     @GetMapping("/products")
-    public String listProducts(Model model){
-       Iterable<Product> products = productRepo.findAll();
-        model.addAttribute("products", products);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User user = userRepo.findByLogin(login);
-        Collection<Role> roles=user.getRoles();
-        if(roles.size()>1)
+    public String listProducts(Model model) {
+        model.addAttribute("products", productRepo.findAll());
+        User user = UserService.getCurrentUser(userRepo);
+        if (UserService.getCountRoles(user) > 1)
             return "productsAdmin";
         return "products";
     }
 
     @PostMapping("/products")
-    public String addProduct(@RequestParam String name, @RequestParam Integer price, @RequestParam String description, @RequestParam String imgLink, Model model) {
-        Product product = new Product(name, price, description, imgLink);
-        productRepo.save(product);
-        Iterable<Product> products = productRepo.findAll();
-        model.addAttribute("products", products);
-        return "products";
+    public String addProduct(@RequestParam String name, @RequestParam(required = false)
+            Integer price, @RequestParam String description, @RequestParam String imgLink, Model model, Model modelWrongName) {
+        if (!ProductService.addProduct(name, price, description, imgLink, productRepo)) {
+            modelWrongName.addAttribute("message", "error");
+        }
+        model.addAttribute("products", productRepo.findAll());
+        return "productsAdmin";
     }
+
     @PostMapping("/change")
-    public String changePrice(Product product, Model model){
-        Optional<Product> productFromDb = productRepo.findById(product.getId());
-        Iterable<Product> products;
-        if(productFromDb.isEmpty()) {
-            products = productRepo.findAll();
-            model.addAttribute("products", products);
-            return "products";
-        }
-        Product newProduct = productFromDb.get();
-        newProduct.setProduct(product);
-        productRepo.save(newProduct);
-        products = productRepo.findAll();
-        model.addAttribute("products", products);
-        return "products";
-    }
-    @PostMapping("/createOrder")
-    public String createOrder(@RequestParam String productName,@RequestParam Integer number, Model model, Model modelWrongName){
-        Product productFromDb=productRepo.findByName(productName);
-        if(productFromDb == null){
-            Iterable<Product> products;
-            products = productRepo.findAll();
-            model.addAttribute("products", products);
-            modelWrongName.addAttribute("message", "wrong name");
-            return "products";
-        }
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User user = userRepo.findByLogin(login);
-        Iterable<Order> ordersFromDb = orderRepo.findAllByUserIdAndStatus(user,false);
-
-        int counter = 0;
-        for (Order order : ordersFromDb)
-            counter++;
-
-        if (counter == 0) {
-            Order newOrder = new Order(user);
-            orderRepo.save(newOrder);
-        }
-        Order orderFromDb2 = orderRepo.findByUserIdAndStatus(user,false);
-
-        Set setFromDb = setRepo.findByOrderIdAndProductId(orderFromDb2,productFromDb);
-        if(setFromDb == null) {
-            Set newSet = new Set(orderFromDb2, productFromDb, number);
-            setRepo.save(newSet);
-        }
-        else{
-            setFromDb.setNumber(number+setFromDb.getNumber());
-            setRepo.save(setFromDb);
-        }
-        orderFromDb2.setOrderSum(productFromDb.getPrice()*number+ orderFromDb2.getOrderSum());
-        orderRepo.save(orderFromDb2);
-
+    public String changeProduct(Product product, Model model) {
+        ProductService.changeProduct(product, productRepo);
+        model.addAttribute("products", productRepo.findAll());
         return "redirect:/products";
     }
 
-    @GetMapping("/cart")
-    public String orderList(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User user = userRepo.findByLogin(login);
-        Order orderFromDb=orderRepo.findByUserIdAndStatus(user,false);
-        Iterable<Set> sets= setRepo.findAllByOrderId(orderFromDb);
+    @PostMapping("/createSet")
+    public String createSet(@RequestParam String productName, @RequestParam(required = false) Integer number,
+                            Model model, Model modelWrongName) {
 
-        List<Product> products= new ArrayList<>();
-        for(Set set:sets){
-            products.add(set.getProductId());
+        if (!SetService.createSet(productName, number, orderRepo, setRepo, userRepo, productRepo)) {
+            modelWrongName.addAttribute("message", "wrong name or number");
+
         }
 
-        model.addAttribute("products", products);
+        model.addAttribute("products", productRepo.findAll());
+
+
+        return "products";
+    }
+
+    @GetMapping("/cart")
+    public String orderList(Model model, Model model2) {
+
+        model.addAttribute("products", OrderService.showCart(userRepo, orderRepo, setRepo));
+        model2.addAttribute("orderSum", OrderService.getOrderSumCart(orderRepo, userRepo));
 
         return "cart";
     }
 
     @GetMapping("/orderStatus")
     public String orderStatus(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User user = userRepo.findByLogin(login);
-        Iterable<Order> ordersFromDb = orderRepo.findAllByUserId(user);
-        Order orderMain;
-        for (Order order : ordersFromDb) {
-            if (order.getStatus() == false) {
-                order.setStatus(true);
-                orderRepo.save(order);
-            }
-        }
-        model.addAttribute("user", user);
+        model.addAttribute("user", UserService.getCurrentUser(userRepo));
         return "redirect:/profile";
 
     }
+
 }

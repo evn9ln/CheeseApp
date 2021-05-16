@@ -63,11 +63,16 @@
     <input type="number" name="id" placeholder="Id" required>
     <input type="text" name="name" placeholder="Name" required>
     <input type="number" name="price" placeholder="Price" required>
-    <input type="text" name="description" placeholder="Description" required>
-    <input type="text" name="imgLink" placeholder="imgLink" required>
+    <input type="text" name="description" placeholder="Description">
+    <input type="text" name="imgLink" placeholder="imgLink" >
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <button class="btn btn-warning" type="submit">Change</button>
 </form>
-
+<div class="fixed-bottom text-center">
+    <div class="alert alert-warning" role="alert" th:if="${not #strings.isEmpty(message)}">
+        Try again.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
 </body>
 </html>

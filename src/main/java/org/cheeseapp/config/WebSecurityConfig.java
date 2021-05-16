@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
 import javax.sql.DataSource;
 
 
@@ -23,15 +24,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/registration").permitAll() //для этих путей разрешен полный доступ
-                    .anyRequest().authenticated()
+                .antMatchers("/", "/registration").permitAll() //для этих путей разрешен полный доступ
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/login") //mapping логина
-                    .permitAll()
+                .formLogin()
+                .loginPage("/login") //mapping логина
+                .permitAll()
                 .and()
-                    .logout()
-                    .permitAll();
+                .logout()
+                .permitAll();
     }
 
     //авторизация с использованием бд
@@ -47,9 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(
-          //static
-          "/img/**",
-                "/css/**"
+                //static
+                "/img/**",
+                "/css/**",
+                "/js/**"
         );
     }
 }

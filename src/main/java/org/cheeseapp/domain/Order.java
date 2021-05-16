@@ -1,13 +1,12 @@
 package org.cheeseapp.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
-import java.util.Date;
+
 
 @Entity //указатель hibernate, что этот класс сущность бд (реляционное отображение)
 @Table(name = "orders")
-public class Order  {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //автогенерация айди от 1
     @Column(name = "order_id")
@@ -21,11 +20,13 @@ public class Order  {
     private Date date;
     @Column(name = "status")
     private Boolean status;
-    public Order(User userId){
-        this.userId=userId;
-        this.date=new Date();
-        this.status=false;
-        this.orderSum=0;
+
+    public Order(User userId) {
+
+        this.userId = userId;
+        this.date = new Date();
+        this.status = false;
+        this.orderSum = 0;
 
     }
 

@@ -6,7 +6,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface OrderRepo extends CrudRepository<Order, Integer> {
     Order findByUserId(User userId);
-    Iterable<Order> findAllByUserIdAndStatus(User userId,Boolean status);
-    Order findByUserIdAndStatus(User userId,Boolean status);
+
+    Iterable<Order> findAllByUserIdAndStatus(User userId, Boolean status);
+
+    Order findByUserIdAndStatus(User userId, Boolean status);
+
     Iterable<Order> findAllByUserId(User userId);
 }

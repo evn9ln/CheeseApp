@@ -33,20 +33,21 @@
 <table class="table table-striped">
     <thead>
     <tr class="table-warning">
-        <th> Id </th>
-        <th> Name </th>
+        <th> Name  </th>
+        <th> Number </th>
         <th> Price </th>
     </tr>
     </thead>
     <tbody>
 
     <tr class="table-warning" th:each="product : ${products}">
-        <td><span th:text="${product.id}"> Id </span></td>
-        <td><span th:text="${product.name}"> Name </span></td>
-        <td><span th:text="${product.price}"> Price </span> руб.</td>
+        <td><span th:text="${product.productName}"> Name </span></td>
+        <td><span th:text="${product.count}"> Count </span></td>
+        <td><span th:text="${product.cost}"> Cost </span>RUB</td>
     </tr>
     </tbody>
 </table>
+<p th:text="'Total cost: ' + ${orderSum}"></p>
 
 
 <form method="get" action="orderStatus">

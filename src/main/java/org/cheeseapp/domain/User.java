@@ -10,26 +10,27 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name= "surname")
+    @Column(name = "surname")
     private String surname;
-    @Column(name= "name")
+    @Column(name = "name")
     private String name;
-    @Column(name= "phone_number")
+    @Column(name = "phone_number")
     private String phone;
-    @Column(name= "e_mail")
+    @Column(name = "e_mail")
     private String mail;
-    @Column(name= "login")
+    @Column(name = "login")
     private String login;
-    @Column(name= "password")
+    @Column(name = "password")
     private String password;
-    @Column(name= "address")
+    @Column(name = "address")
     private String address;
     @Column(name = "active")
     private Boolean active;
 
-    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER) //доп. таблица для enum создается сама,
-                                                                        // подгружаются "жадно" (т.е. при запросе подгружаются сразу все)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id")) //данное поле хранится в отдельной таблице с ролью и id
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER) //доп. таблица для enum создается сама,
+    // подгружаются "жадно" (т.е. при запросе подгружаются сразу все)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    //данное поле хранится в отдельной таблице с ролью и id
     @Enumerated(EnumType.STRING) //enum храним в виде строки
     private Set<Role> roles; //client,admin
 
