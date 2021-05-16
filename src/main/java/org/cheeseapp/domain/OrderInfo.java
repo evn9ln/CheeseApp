@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class OrderInfo {
+    private Integer orderId;
     private String clientName;
     private String phoneNumber;
     private Date date;
@@ -11,13 +12,23 @@ public class OrderInfo {
     private Boolean status;
     private ArrayList<ProductStatistic> productList;
 
-    public OrderInfo(String clientName, String phoneNumber, Date date, Integer orderSum, ArrayList<ProductStatistic> productList, Boolean status) {
+    public OrderInfo(Integer orderId, String clientName, String phoneNumber, Date date, Integer orderSum, ArrayList<ProductStatistic> productList,Boolean status) {
+        this.orderId = orderId;
         this.clientName = clientName;
         this.phoneNumber = phoneNumber;
         this.date = date;
         this.orderSum = orderSum;
         this.productList = productList;
+        this.status=status;
+    }
+
+    public OrderInfo(String clientName, String phoneNumber, Date date, Integer orderSum, Boolean status, ArrayList<ProductStatistic> productList) {
+        this.clientName = clientName;
+        this.phoneNumber = phoneNumber;
+        this.date = date;
+        this.orderSum = orderSum;
         this.status = status;
+        this.productList = productList;
     }
 
     public Boolean getStatus() {
@@ -66,5 +77,13 @@ public class OrderInfo {
 
     public void setProductList(ArrayList<ProductStatistic> productList) {
         this.productList = productList;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

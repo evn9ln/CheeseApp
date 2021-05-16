@@ -51,7 +51,7 @@
 <p class="form-p">Add product</p>
 <form class="add-form" method="post">
     <input type="text" name="name" placeholder="Name" />
-    <input type="text" name="price" placeholder="Price" />
+    <input type="text" name="price" placeholder="Price" min="0" max="100000" />
     <input type="text" name="description" placeholder="Description" />
     <input type="text" name="imgLink" placeholder="imgLink" />
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -60,9 +60,9 @@
 
 <p class="form-p">Change product</p>
 <form class="change-form" method="post" action="change">
-    <input type="number" name="id" placeholder="Id" required>
+    <input type="number" name="id" placeholder="Id" required min="1">
     <input type="text" name="name" placeholder="Name" required>
-    <input type="number" name="price" placeholder="Price" required>
+    <input type="number" name="price" placeholder="Price" required min="0" max="100000">
     <input type="text" name="description" placeholder="Description">
     <input type="text" name="imgLink" placeholder="imgLink" >
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />

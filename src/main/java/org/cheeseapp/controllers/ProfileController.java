@@ -54,12 +54,6 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-//    @GetMapping("/profileAdmin")
-//    public String profileAdmin(Model model) {
-//        User user = userRepo.findByLogin(UserService.getCurrentUserLogin());
-//        model.addAttribute("user", user);
-//        return "profileAdmin";
-//    }
 
     @GetMapping("/statisticPage")
     public String statisticPage(Model model) {

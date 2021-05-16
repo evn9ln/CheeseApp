@@ -19,6 +19,7 @@ public class OrderService {
         Iterable<Order> allOrders = orderRepo.findAll();
         ArrayList<OrderInfo> allOrdersInfo = new ArrayList<OrderInfo>();
         for (Order order : allOrders) {
+            Integer orderId = order.getId();
             String clientName = order.getUserId().getName();
             String phoneNumber = order.getUserId().getPhone();
             Date date = order.getDate();
@@ -33,7 +34,7 @@ public class OrderService {
                         set.getNumber(), set.getNumber() * set.getProductId().getPrice());
                 productList.add(productStatistic);
             }
-            OrderInfo orderInfo = new OrderInfo(clientName, phoneNumber, date, orderSum, productList, status);
+            OrderInfo orderInfo = new OrderInfo(orderId, clientName, phoneNumber, date, orderSum, productList, status);
             allOrdersInfo.add(orderInfo);
         }
         return allOrdersInfo;
@@ -58,7 +59,11 @@ public class OrderService {
 
     public static Integer getOrderSumCart(OrderRepo orderRepo, UserRepo userRepo) {
         User user = UserService.getCurrentUser(userRepo);
-        return orderRepo.findByUserIdAndStatus(user, false).getOrderSum();
+        Order order = orderRepo.findByUserIdAndStatus(user, false);
+        if(order == null) {
+            return 0;
+        }
+        return order.getOrderSum();
     }
 
     public static void changeOrderStatus(OrderRepo orderRepo, Integer orderId, String status) {

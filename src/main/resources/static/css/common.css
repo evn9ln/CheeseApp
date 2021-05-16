@@ -55,12 +55,17 @@ header{
     margin-left: 10%;
 }
 
-.change-prof-form{
+.change-prof-form {
     font-family: Century Gothic, sans-serif;
     padding-top: 2rem;
     float: left;
     padding-left: 50px;
     padding-right: 50px;
+}
+
+.change-status-form {
+    font-family: Century Gothic, sans-serif;
+    padding-bottom: 2rem;
 }
 
 .change-prof-form input[type=text] {
@@ -71,9 +76,30 @@ header{
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
 }
 
+.change-status-form input[type=number], select {
+    padding-top: 5px;
+    border:0;
+    border-radius: 7px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    max-width: 150px;
+    min-width: 150px;
+    min-height: 50px;
+    max-height: 50px;
+}
+
 .profile-table-container{
-    margin:0;
-    max-width: 800px;
+    padding-top: 1.5rem;
+    padding-right: 7rem;
+    min-width: 900px;
+    max-width: 900px;
+    float: right;
+}
+
+.history-p, .cart-p{
+    font-family: Century Gothic, sans-serif;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .container-change-prof{
