@@ -74,16 +74,16 @@ public class ProfileController {
     }
     @GetMapping("/statisticPage")
     public String statisticPage(Model model){
-        Iterable<Product> allProducts = productRepo.findAll();
+        Iterable<Product> allProducts=productRepo.findAll();
         Collection<ProductStatistic> allProductStatistic=new ArrayList<ProductStatistic>() ;
         for(Product product:allProducts){
-            int count = 0;
+            int count=0;
             Iterable<Set> allSetsWithProductName=setRepo.findAllByProductId(product);
             for(Set set:allSetsWithProductName){
                 count+=set.getNumber();
 
             }
-            ProductStatistic productStatistic = new ProductStatistic(product.getId(),
+            ProductStatistic productStatistic=new ProductStatistic(product.getId(),
                     product.getName(),count,product.getPrice()*count);
             allProductStatistic.add(productStatistic);
         }
@@ -94,7 +94,7 @@ public class ProfileController {
     @GetMapping("/orderPage")
     public String orderPage(Model model) {
         Iterable<Order> allOrders = orderRepo.findAll();
-        List<OrderInfo> allOrdersInfo = new ArrayList<OrderInfo>();
+        ArrayList<OrderInfo> allOrdersInfo = new ArrayList<OrderInfo>();
         for (Order order : allOrders) {
             String clientName = order.getUserId().getName();
             String phoneNumber = order.getUserId().getPhone();

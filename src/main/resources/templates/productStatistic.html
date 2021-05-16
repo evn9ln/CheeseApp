@@ -33,7 +33,7 @@
 
 <table class="table table-striped table_sort">
     <thead>
-    <tr class="table-dark">
+    <tr class="table-warning">
         <th> Id </th>
         <th> Name </th>
         <th> Cost </th>
@@ -42,7 +42,7 @@
     </thead>
     <tbody>
 
-    <tr class="table-dark" th:each="product : ${productStatistic}">
+    <tr class="table-warning" th:each="product : ${productStatistic}">
         <td><span th:text="${product.id}"> Id </span></td>
         <td><span th:text="${product.productName}"> Name </span></td>
         <td><span th:text="${product.cost}"> Cost </span> руб.</td>

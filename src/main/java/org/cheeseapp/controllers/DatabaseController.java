@@ -70,9 +70,13 @@ public class DatabaseController {
         return "products";
     }
     @PostMapping("/createOrder")
-    public String createOrder(@RequestParam String productName,@RequestParam Integer number, Model model){
+    public String createOrder(@RequestParam String productName,@RequestParam Integer number, Model model, Model modelWrongName){
         Product productFromDb=productRepo.findByName(productName);
         if(productFromDb == null){
+            Iterable<Product> products;
+            products = productRepo.findAll();
+            model.addAttribute("products", products);
+            modelWrongName.addAttribute("message", "wrong name");
             return "products";
         }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -32,7 +32,7 @@
 
 <table class="table table-striped">
     <thead>
-    <tr>
+    <tr class="table-warning">
         <th> Id </th>
         <th> Name </th>
         <th> Price </th>
@@ -40,7 +40,7 @@
     </thead>
     <tbody>
 
-    <tr th:each="product : ${products}">
+    <tr class="table-warning" th:each="product : ${products}">
         <td><span th:text="${product.id}"> Id </span></td>
         <td><span th:text="${product.name}"> Name </span></td>
         <td><span th:text="${product.price}"> Price </span> руб.</td>
