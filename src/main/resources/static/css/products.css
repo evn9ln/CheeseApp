@@ -34,9 +34,16 @@ tr, span {
     font-size: 30px;
 }
 
-.cart-form{
+.cart {
+    font-family: Century Gothic, sans-serif;
     padding-top: 5px;
     padding-bottom: 2rem;
+}
+
+.cart button{
+    width: 415px;
+    min-height: 45px;
+    max-height: 45px;
 }
 
 th{
@@ -50,3 +57,4 @@ th.sorted[data-order="-1"]::after {
 th.sorted[data-order="1"]::after {
     content: "▲"
 }
+

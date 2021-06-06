@@ -50,9 +50,15 @@ header{
 }
 
 .adm-btm{
+    font-family: Century Gothic, sans-serif;
     padding-top: 2rem;
     padding-bottom: 2px;
-    margin-left: 10%;
+    margin-left: 5%;
+}
+
+.adm-btm button {
+    min-height: 50px;
+    max-height: 50px;
 }
 
 .change-prof-form {

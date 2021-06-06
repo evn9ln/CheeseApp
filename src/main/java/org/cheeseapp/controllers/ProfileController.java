@@ -46,12 +46,15 @@ public class ProfileController {
     }
 
     @PostMapping("/changeprof")
-    public String changeProf(User user, Model model) {
+    public String changeProf(User user, Model model, Model modelOrder) {
         User userFromDb = UserService.getCurrentUser(userRepo);
         userFromDb.set(user);
         userRepo.save(userFromDb);
         model.addAttribute("user", userFromDb);
-        return "redirect:/profile";
+        modelOrder.addAttribute("orders", orderRepo.findAllByUserId(userFromDb));
+        if (userFromDb.getRoles().size() > 1)
+            return "profileAdmin";
+        return "profile";
     }
 
 
